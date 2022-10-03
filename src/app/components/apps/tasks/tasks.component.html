@@ -1,0 +1,593 @@
+<!-- <app-breadcrumb [title]="'Tasks'" [items]="['Apps']" [active_item]="'Tasks'"></app-breadcrumb> -->
+<!-- Container-fluid starts-->
+<div class="container-fluid" style="padding-top: 40px">
+  <div class="email-wrap bookmark-wrap">
+    <div class="row">
+      <div class="col-xl-3 box-col-6">
+        <div class="email-left-aside">
+          <div class="card">
+            <div class="card-body">
+              <div class="email-app-sidebar left-bookmark">
+                <div class="media">
+                  <div class="media-size-email">
+                    <img
+                      class="mr-3 rounded-circle"
+                      src="assets/images/user/user.png"
+                      alt=""
+                    />
+                  </div>
+                  <div class="media-body">
+                    <h6 class="f-w-600">{{ nombre }}</h6>
+                  </div>
+                </div>
+                <ul class="nav main-menu" role="tablist">
+                  <li class="nav-item">
+                    <button
+                      class="badge-light-primary btn-block btn-mail"
+                      type="button"
+                      (click)="openModal(addTask)"
+                    >
+                      <i class="mr-2" data-feather="check-circle"></i> Agregar
+                      tarea
+                    </button>
+                  </li>
+                  <li class="nav-item">
+                    <span class="main-title">Filtros</span>
+                  </li>
+
+                  <li *ngFor="let item of arregloValues">
+                    <a
+                      [ngClass]="{ select: variable == item.name }"
+                      (click)="cambiaValor(item.name)"
+                      id="pills-created-tab"
+                      data-toggle="pill"
+                      role="tab"
+                      aria-controls="pills-created"
+                      aria-selected="true"
+                      ><span class="title">{{ item.name }}</span></a
+                    >
+                  </li>
+                  <!--     <li>
+                    <a
+                      (click)="cambiaValor('Tareas para hoy')"
+                      class="show"
+                      id="pills-todaytask-tab"
+                      data-toggle="pill"
+                      role="tab"
+                      aria-controls="pills-todaytask"
+                      aria-selected="false"
+                      ><span class="title">Tareas para hoy</span></a
+                    >
+                  </li> -->
+                  <!-- <li>
+                    <a
+                      class="show"
+                      id="pills-delayed-tab"
+                      data-toggle="pill"
+                      role="tab"
+                      aria-controls="pills-delayed"
+                      aria-selected="false"
+                      ><span class="title"> Delayed Tasks</span></a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="show"
+                      id="pills-upcoming-tab"
+                      data-toggle="pill"
+                      role="tab"
+                      aria-controls="pills-upcoming"
+                      aria-selected="false"
+                      ><span class="title">Upcoming Tasks</span></a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="show"
+                      id="pills-weekly-tab"
+                      data-toggle="pill"
+                      role="tab"
+                      aria-controls="pills-weekly"
+                      aria-selected="false"
+                      ><span class="title">This week tasks</span></a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="show"
+                      id="pills-monthly-tab"
+                      data-toggle="pill"
+                      role="tab"
+                      aria-controls="pills-monthly"
+                      aria-selected="false"
+                      ><span class="title">This month tasks</span></a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="show"
+                      id="pills-assigned-tab"
+                      data-toggle="pill"
+                      role="tab"
+                      aria-controls="pills-assigned"
+                      aria-selected="false"
+                      ><span class="title">Assigned to me</span></a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="show"
+                      id="pills-tasks-tab"
+                      data-toggle="pill"
+                      role="tab"
+                      aria-controls="pills-tasks"
+                      aria-selected="false"
+                      ><span class="title">My tasks</span></a
+                    >
+                  </li> -->
+                  <!--   <li>
+                    <hr />
+                  </li> -->
+                  <!--  <li>
+                    <span class="main-title">
+                      Tags<span class="pull-right"
+                        ><a
+                          href="javascript:void(0)"
+                          (click)="openModal(addTask)"
+                          ><i data-feather="plus-circle"></i></a></span
+                    ></span>
+                  </li> -->
+                  <!--    <li>
+                    <a
+                      class="show"
+                      id="pills-notification-tab"
+                      data-toggle="pill"
+                      href="javascript:void(0)"
+                      role="tab"
+                      aria-controls="pills-notification"
+                      aria-selected="false"
+                      ><span class="title"> notification</span></a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="show"
+                      id="pills-newsletter-tab"
+                      data-toggle="pill"
+                      href="javascript:void(0)"
+                      role="tab"
+                      aria-controls="pills-newsletter"
+                      aria-selected="false"
+                      ><span class="title"> Newsletter</span></a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="show"
+                      id="pills-business-tab"
+                      data-toggle="pill"
+                      href="javascript:void(0)"
+                      role="tab"
+                      aria-controls="pills-business"
+                      aria-selected="false"
+                      ><span class="title"> Business</span></a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="show"
+                      id="pills-holidays-tab"
+                      data-toggle="pill"
+                      href="javascript:void(0)"
+                      role="tab"
+                      aria-controls="pills-holidays"
+                      aria-selected="false"
+                      ><span class="title"> Holidays</span></a
+                    >
+                  </li> -->
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-9 col-md-12 box-col-12">
+        <div class="email-right-aside bookmark-tabcontent">
+          <div class="card email-body radius-left">
+            <div class="pl-0">
+              <div class="tab-content">
+                <div
+                  class="tab-pane fade active show"
+                  id="pills-created"
+                  role="tabpanel"
+                  aria-labelledby="pills-created-tab"
+                >
+                  <div class="card mb-0">
+                    <div class="card-header d-flex">
+                      <h5 class="mb-0">{{ variable }}</h5>
+                      <!--  <a href="javascript:void(0)"
+                        ><i class="mr-2" data-feather="printer"></i>Print</a
+                      > -->
+                    </div>
+                    <div class="card-body p-0">
+                      <div class="taskadd">
+                        <div class="table-responsive table-bordernone">
+                          <table class="table">
+                            <tr
+                              *ngFor="let item of arregloNuevo; let i = index"
+                            >
+                              <div
+                                style="
+                                  display: flex;
+                                  flex-direction: row;
+                                  justify-content: space-between;
+                                "
+                                *ngIf="variable == item.type"
+                              >
+                                <td>
+                                  <h6 class="task_title_0">{{ item.title }}</h6>
+                                  <p class="project_name_0">
+                                    {{ item.type }}
+                                  </p>
+                                </td>
+                                <td>
+                                  <p class="task_desc_0">
+                                    {{ item.description }}
+                                  </p>
+                                </td>
+                                <div
+                                  style="
+                                    display: flex;
+                                    justify-content: flex-end;
+                                  "
+                                >
+                                  <td>
+                                    <!--  <a class="mr-2" href="javascript:void(0)"
+                                    ><i data-feather="link"></i></a
+                                  > --><a
+                                      (click)="confirm(i, item, confirmxD)"
+                                      style="cursor: pointer"
+                                    >
+                                      <i class="fa fa-edit"></i
+                                    ></a>
+                                  </td>
+                                  <td>
+                                    <a
+                                      style="cursor: pointer"
+                                      (click)="eliminarNota(i)"
+                                      ><i class="fa fa-trash"></i
+                                    ></a>
+                                  </td>
+                                </div>
+                              </div>
+                            </tr>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <app-add-task #addTask></app-add-task>
+<app-create-task-tag #createTag></app-create-task-tag> -->
+<!-- Container-fluid Ends-->
+
+<ng-template #addTask let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">Añadir Tarea</h5>
+    <button
+      class="close"
+      type="button"
+      data-dismiss="modal"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
+      <span aria-hidden="true">X</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form
+      class="form-bookmark needs-validation"
+      id="bookmark-form"
+      [formGroup]="signinForm"
+      (ngSubmit)="submitLoginForm()"
+    >
+      <div class="row">
+        <div class="form-group col-md-12">
+          <label for="task-title">Título</label>
+          <input
+            class="form-control"
+            id="task-title"
+            type="text"
+            formControlName="title"
+            required=""
+            autocomplete="off"
+          />
+        </div>
+        <div class="form-group col-md-12">
+          <label for="sub-task">Sub título</label>
+          <input
+            class="form-control"
+            id="sub-task"
+            type="text"
+            formControlName="subtitle"
+            required=""
+            autocomplete="off"
+          />
+        </div>
+        <!--  <div class="form-group col-md-12">
+          <div class="d-flex date-details">
+            <div class="d-inline-block">
+              <label class="d-block mb-0" for="chk-ani">
+                <input
+                  class="checkbox_animated"
+                  id="chk-ani"
+                  type="checkbox"
+                />Remind on
+              </label>
+            </div>
+            <div class="d-inline-block">
+              <input
+                class="datepicker-here form-control digits"
+                type="text"
+                data-language="en"
+                placeholder="Date"
+              />
+            </div>
+            <div class="d-inline-block">
+              <select class="form-control">
+                <option>7:00 am</option>
+                <option>7:30 am</option>
+                <option>8:00 am</option>
+                <option>8:30 am</option>
+                <option>9:00 am</option>
+                <option>9:30 am</option>
+                <option>10:00 am</option>
+                <option>10:30 am</option>
+                <option>11:00 am</option>
+                <option>11:30 am</option>
+                <option>12:00 pm</option>
+                <option>12:30 pm</option>
+                <option>1:00 pm</option>
+                <option>2:00 pm</option>
+                <option>3:00 pm</option>
+                <option>4:00 pm</option>
+                <option>5:00 pm</option>
+                <option>6:00 pm</option>
+              </select>
+            </div>
+            <div class="d-inline-block">
+              <label class="d-block mb-0" for="chk-ani1">
+                <input
+                  class="checkbox_animated"
+                  id="chk-an1"
+                  type="checkbox"
+                />notification
+              </label>
+            </div>
+            <div class="d-inline-block">
+              <label class="d-block mb-0" for="chk-ani2">
+                <input
+                  class="checkbox_animated"
+                  id="chk-an2"
+                  type="checkbox"
+                />Mail
+              </label>
+            </div>
+          </div>
+        </div> -->
+        <div class="form-group col-md-6">
+          <select class="js-example-basic-single" formControlName="type">
+            <option value="" disabled>Seleccione una opción</option>
+
+            <option [value]="item.name" *ngFor="let item of arregloValues">
+              {{ item.name }}
+            </option>
+          </select>
+        </div>
+        <!--   <div class="form-group col-md-6">
+          <select class="js-example-disabled-results" id="bm-collection">
+            <option value="general">General</option>
+          </select>
+        </div> -->
+        <div class="form-group col-md-12 my-0">
+          <textarea
+            class="form-control"
+            formControlName="description"
+            placeholder="Ingrese una descripción....."
+            required=""
+            autocomplete="off"
+          >
+          </textarea>
+        </div>
+      </div>
+      <div
+        style="
+          display: flex;
+          align-items: flex-end;
+          justify-content: flex-end;
+          margin-top: 20px;
+        "
+      >
+        <button
+          class="btn btn-secondary"
+          id="Bookmark"
+          [disabled]="!signinForm.valid"
+          type="submit"
+        >
+          Guardar
+        </button>
+        <button
+          style="margin-left: 10px"
+          class="btn btn-primary"
+          type="button"
+          data-dismiss="modal"
+          (click)="modal.dismiss('Cross click')"
+        >
+          Cancelar
+        </button>
+      </div>
+    </form>
+  </div>
+</ng-template>
+<ng-template #confirmxD let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">Editar Tarea</h5>
+    <button
+      class="close"
+      type="button"
+      data-dismiss="modal"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
+      <span aria-hidden="true">X</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="row" *ngIf="simuladorDate">
+      <div class="form-group col-md-12">
+        <label for="task-title">Título</label>
+        <input
+          class="form-control"
+          id="task-title"
+          type="text"
+          [(ngModel)]="simuladorDate.title"
+          required=""
+          autocomplete="off"
+        />
+      </div>
+      <div class="form-group col-md-12">
+        <label for="sub-task">Sub título</label>
+        <input
+          class="form-control"
+          id="sub-task"
+          type="text"
+          [(ngModel)]="simuladorDate.subtitle"
+          required=""
+          autocomplete="off"
+        />
+      </div>
+      <!--  <div class="form-group col-md-12">
+          <div class="d-flex date-details">
+            <div class="d-inline-block">
+              <label class="d-block mb-0" for="chk-ani">
+                <input
+                  class="checkbox_animated"
+                  id="chk-ani"
+                  type="checkbox"
+                />Remind on
+              </label>
+            </div>
+            <div class="d-inline-block">
+              <input
+                class="datepicker-here form-control digits"
+                type="text"
+                data-language="en"
+                placeholder="Date"
+              />
+            </div>
+            <div class="d-inline-block">
+              <select class="form-control">
+                <option>7:00 am</option>
+                <option>7:30 am</option>
+                <option>8:00 am</option>
+                <option>8:30 am</option>
+                <option>9:00 am</option>
+                <option>9:30 am</option>
+                <option>10:00 am</option>
+                <option>10:30 am</option>
+                <option>11:00 am</option>
+                <option>11:30 am</option>
+                <option>12:00 pm</option>
+                <option>12:30 pm</option>
+                <option>1:00 pm</option>
+                <option>2:00 pm</option>
+                <option>3:00 pm</option>
+                <option>4:00 pm</option>
+                <option>5:00 pm</option>
+                <option>6:00 pm</option>
+              </select>
+            </div>
+            <div class="d-inline-block">
+              <label class="d-block mb-0" for="chk-ani1">
+                <input
+                  class="checkbox_animated"
+                  id="chk-an1"
+                  type="checkbox"
+                />notification
+              </label>
+            </div>
+            <div class="d-inline-block">
+              <label class="d-block mb-0" for="chk-ani2">
+                <input
+                  class="checkbox_animated"
+                  id="chk-an2"
+                  type="checkbox"
+                />Mail
+              </label>
+            </div>
+          </div>
+        </div> -->
+      <div class="form-group col-md-6">
+        <select
+          class="js-example-basic-single"
+          [(ngModel)]="simuladorDate.type"
+        >
+          <option value="" disabled>Seleccione una opción</option>
+
+          <option [value]="item.name" *ngFor="let item of arregloValues">
+            {{ item.name }}
+          </option>
+        </select>
+      </div>
+      <!--   <div class="form-group col-md-6">
+          <select class="js-example-disabled-results" id="bm-collection">
+            <option value="general">General</option>
+          </select>
+        </div> -->
+      <div class="form-group col-md-12 my-0">
+        <textarea
+          class="form-control"
+          [(ngModel)]="simuladorDate.description"
+          placeholder="Ingrese una descripción....."
+          required=""
+          autocomplete="off"
+        >
+        </textarea>
+      </div>
+    </div>
+    <div
+      style="
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-end;
+        margin-top: 20px;
+      "
+    >
+      <button
+        class="btn btn-secondary"
+        id="Bookmark"
+        type="submit"
+        (click)="editarSimulador()"
+      >
+        Editar
+      </button>
+      <button
+        style="margin-left: 10px"
+        class="btn btn-primary"
+        type="button"
+        (click)="modal.dismiss('Cross click')"
+        data-dismiss="modal"
+      >
+        Cancelar
+      </button>
+    </div>
+  </div>
+</ng-template>
